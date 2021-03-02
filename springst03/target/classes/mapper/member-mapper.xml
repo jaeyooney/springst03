@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mtbatsi.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+	<resultMap id="resultMember" type="Member">
+		<id property="id" column="ID"/>
+		<result property="passwd" column="PASSWD"/>
+		<result property="name" column="NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="gender" column="GENDER"/>
+		<result property="age" column="AGE"/>
+		<result property="phone" column="PHONE"/>
+		<result property="adress" column="ADRESS"/>
+		<result property="enrollDate" column="ENEOLL_DATE"/>
+	</resultMap>
+	
+	<!-- member table의 모든 데이터 select -->
+	<select id="selectMemberAll" resultMap="resultMember"><!--resultType="Member"  -->
+		SELECT * FROM MEMBER
+	</select>
+	
+	<!-- member 하나만 가져오는 select -->
+	<select id="selectMember" parameterType="String" resultMap="resultMember">
+		SELECT * FROM MEMBER WHERE ID = #{userid}
+	</select>
+	
+	<!-- insert Member -->
+	<insert id="insertMember" parameterType="Member" statementType="PREPARED">
+		INSERT INTO MEMBER(ID, PASSWD, NAME, EMAIL, GENDER, AGE, PHONE, ADDRESS, ENROLL_DATE)
+			 VALUES(#{id}, #{passwd}, #{name}, #{email}, #{gender}, #{age}, #{phone}, #{address}, SYSDATE)
+	</insert>
+	
+	<!-- update Member -->
+	<update id="updateMember">
+		UPDATE MEMBER SET
+			NAME = #{name},
+			EMAIL = #{email},
+			GENDER = #{gender},
+			AGE = #{age},
+			PHONE = #{phone},
+			ADDRESS = #{address}
+			WHERE ID = #{id}
+	</update>
+	
+	<!-- delete Member -->
+	<delete id="deleteMember" parameterType="Member">
+		DELETE FROM MEMBER WHERE ID= #{id}
+	</delete>
+</mapper>
+
