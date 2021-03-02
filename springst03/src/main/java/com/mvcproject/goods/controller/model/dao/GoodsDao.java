@@ -2,15 +2,17 @@ package com.mvcproject.goods.controller.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mvcproject.goods.controller.model.vo.Goods;
 
 @Repository
 public class GoodsDao {
-	
-	private SqlSessionTemplate sqlSession;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	public GoodsDao() {
 		
