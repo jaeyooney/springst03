@@ -9,7 +9,10 @@ public class Goods {
 	private String color;
 	private Date regDate;
 	
+	// 기본 생성자
+	public Goods() {}
 	
+	// 날짜를 제외한 생성자
 	public Goods(String code, String name, int price, String color) {
 		super();
 		this.code = code;
@@ -18,7 +21,7 @@ public class Goods {
 		this.color = color;
 	}
 	
-	
+	// 전체 필드에 대한 생성자
 	public Goods(String code, String name, int price, String color, Date regDate) {
 		super();
 		this.code = code;

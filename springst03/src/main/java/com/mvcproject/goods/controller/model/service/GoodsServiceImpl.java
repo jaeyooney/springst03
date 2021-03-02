@@ -10,7 +10,7 @@ import com.mvcproject.goods.controller.model.dao.GoodsDao;
 import com.mvcproject.goods.controller.model.vo.Goods;
 
 @Service
-public class GoodServiceImpl implements GoodsService{
+public class GoodsServiceImpl implements GoodsService{
 	
 	@Autowired
 	GoodsDao goodsDao;
