@@ -26,4 +26,11 @@ public class GoodsController {
 		return modelAndView;
 		
 	}
+	
+	@RequestMapping(value="goodsIns.do", method= RequestMethod.GET)
+	public ModelAndView goodsIns(Goods goods, ModelAndView modelAndView) throws Exception{
+		modelAndView.setViewName("goods/goodsIns");
+		return modelAndView;
+				
+	} 
 }
