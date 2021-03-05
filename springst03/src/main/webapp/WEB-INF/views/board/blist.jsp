@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<link href="${pageContext.request.contextPath}/resources/css/style.css"
-	rel="stylesheet" type="text/css" />
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/jquery3.2.1.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/style.css"	rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('form[name=listForm]').on(
@@ -35,8 +33,8 @@
 	<p align="center">
 	<h3>게 시 판</h3>
 	<form method="get" name="listForm" action="blist.do">
-		<input type="hidden" name="page" value="${currentPage}"> <input
-			type="text" name="keyword"> <input type="submit" value="검색">
+		<input type="hidden" name="page" value="${currentPage}"> 
+		<input type="text" name="keyword"> <input type="submit" value="검색">
 	</form>
 	<table>
 		<tr>
@@ -54,18 +52,18 @@
 		<!-- 글이 없을 경우 -->
 		<c:if test="${listCount eq 0}">
 			<tr>
-				<td colspan="6" align="center"><br>
-				<br> 게시판에 저장된 글이 없습니다.<br>
-				<br></td>
+				<td colspan="6" align="center"><br><br>
+				 게시판에 저장된 글이 없습니다.<br><br>
+				 </td>
 			</tr>
 		</c:if>
 		<c:if test="${listCount ne 0}">
 			<c:forEach var="vo" items="${list}" varStatus="status">
 				<tr>
 					<td align="center">${status.count}</td>
-					<td align="left"><a
-						href="bDetail.do?board_num=${vo.boardNum}&page=${currentPage}">
-							&nbsp;${vo.boardTitle} </a></td>
+					<td align="left">
+						<a href="bDetail.do?board_num=${vo.boardNum}&page=${currentPage}">&nbsp;${vo.boardTitle}</a>
+					</td>
 					<td align="center">${vo.boardWriter}</td>
 					<td align="center">${vo.regDate}</td>
 					<td align="center">${vo.readCount}</td>
@@ -74,27 +72,29 @@
 		</c:if>
 		<!-- 앞 페이지 번호 처리 -->
 		<tr align="center" height="20">
-			<td colspan="5"><c:if test="${currentPage <= 1}"> 
-  [이전]&nbsp;
- </c:if> <c:if test="${currentPage > 1}">
+			<td colspan="5">
+			<c:if test="${currentPage <= 1}">[이전]&nbsp;</c:if> 
+			<c:if test="${currentPage > 1}">
 					<c:url var="blistST" value="blist.do">
 						<c:param name="page" value="${currentPage-1}" />
 					</c:url>
 					<a href="${blistST}">[이전]</a>
-				</c:if> <!-- 끝 페이지 번호 처리 --> <c:set var="endPage" value="${maxPage}" /> <c:forEach
-					var="p" begin="${startPage+1}" end="${endPage}">
-					<c:if test="${p eq currentPage}">
-						<font color="red" size="4"><b>[${p}]</b></font>
-					</c:if>
-					<c:if test="${p ne currentPage}">
-						<c:url var="blistchk" value="blist.do">
-							<c:param name="page" value="${p}" />
-						</c:url>
-						<a href="${blistchk}">${p}</a>
-					</c:if>
-				</c:forEach> <c:if test="${currentPage >= maxPage}">
- [다음]
- </c:if> <c:if test="${currentPage < maxPage}">
+			</c:if> 
+			<!-- 끝 페이지 번호 처리 --> 
+			<c:set var="endPage" value="${maxPage}" />
+			<c:forEach	var="p" begin="${startPage+1}" end="${endPage}">
+				<c:if test="${p eq currentPage}">
+					<font color="red" size="4"><b>[${p}]</b></font>
+				</c:if>
+				<c:if test="${p ne currentPage}">
+					<c:url var="blistchk" value="blist.do">
+						<c:param name="page" value="${p}" />
+					</c:url>
+					<a href="${blistchk}">${p}</a>
+				</c:if>
+			</c:forEach> 
+				<c:if test="${currentPage >= maxPage}">[다음]	</c:if> 
+				<c:if test="${currentPage < maxPage}">
 					<c:url var="blistEND" value="blist.do">
 						<c:param name="page" value="${currentPage+1}" />
 					</c:url>

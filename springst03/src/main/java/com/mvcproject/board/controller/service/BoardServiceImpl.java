@@ -16,24 +16,17 @@ public class BoardServiceImpl implements BoardService {
 
  	@Override
 	public int totalCount() {
-
 		return boardDao.listCount();
-
-}
+ 	}
 
 	@Override
 	public List<Board> selectList(int startPage, int limit) {
-
 		return boardDao.selectList(startPage, limit);
-
 	}
-
 
 	@Override
 	public List<Board> selectSearch(String keyword) {
-
 		return boardDao.searchList(keyword);
-
 	}
 	
 }
